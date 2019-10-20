@@ -2,7 +2,7 @@
 
 getto-habit documents
 
-status: draft
+status: published
 
 
 ###### Table of Contents
