@@ -21,6 +21,7 @@ RUN set -x && \
   curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - && \
   apt-get install -y nodejs && \
   npm install -g npm && \
+  rm -rf /root/.npm && \
   : "install hugo" && \
   curl -L -o /opt/hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
   tar zxvf /opt/hugo.tar.gz -C /opt && \
