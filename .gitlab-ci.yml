@@ -1,0 +1,162 @@
+image: getto/hangar:tLdQLI2nCBqnX7gU
+
+stages:
+  - test
+  - check
+  - build
+  - release
+  - notify
+
+test:
+  stage: test
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - content/**/*
+
+  before_script:
+    - ./bin/restore.sh
+  script:
+    - npm test
+
+check:
+  stage: check
+  only:
+    refs:
+      - schedules
+    variables:
+      - $CHECK
+
+  image: getto/hangar:latest
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_CONTENT_TRUST: 1
+  services:
+    - docker:dind
+
+  cache:
+    paths:
+      - .cache
+
+  script:
+    - getto-hangar-test.sh
+
+update:
+  stage: check
+  only:
+    refs:
+      - schedules
+    variables:
+      - $UPDATE
+
+  image: getto/hangar:latest
+
+  variables:
+    GIT_USER_NAME: getto
+    GIT_USER_EMAIL: admin@getto.systems
+
+  script:
+    - ./bin/update_version.sh
+
+build:
+  stage: build
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - package-lock.json
+      - Dockerfile
+
+  image: getto/hangar:latest
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_CONTENT_TRUST: 1
+  services:
+    - docker:dind
+
+  cache:
+    paths:
+      - .cache
+
+  script:
+    - getto-hangar-build.sh
+
+push_image:
+  stage: build
+  only:
+    refs:
+      - master@getto-systems-base/projects/habit/docs
+    changes:
+      - package-lock.json
+      - Dockerfile
+  except:
+    refs:
+      - schedules
+      - triggers
+
+  image: getto/hangar:latest
+
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_CONTENT_TRUST: 1
+    GIT_USER_NAME: getto
+    GIT_USER_EMAIL: admin@getto.systems
+  services:
+    - docker:dind
+
+  script:
+    - getto-hangar-push.sh
+
+release:
+  stage: release
+  only:
+    refs:
+      - triggers
+    variables:
+      - $RELEASE
+
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+    GIT_USER_NAME: getto
+    GIT_USER_EMAIL: admin@getto.systems
+
+  before_script:
+    - ./bin/restore.sh
+  script:
+    - curl https://raw.githubusercontent.com/getto-systems/version-dump/master/bin/version_dump.sh | bash
+    - curl https://raw.githubusercontent.com/getto-systems/version-dump/master/bin/push_tags.sh | bash
+    - ./bin/deploy.sh
+
+release_success:
+  stage: notify
+  only:
+    refs:
+      - triggers
+    variables:
+      - $RELEASE
+  when: on_success
+
+  image: buildpack-deps:disco-curl
+
+  script:
+    - curl https://raw.githubusercontent.com/getto-systems/psycher-getto/master/bin/notify-deploy.sh | bash -s -- -l $GETTO_PSYCHER_URL?$GETTO_PSYCHER_TOKEN=true success
+
+release_failure:
+  stage: notify
+  only:
+    refs:
+      - triggers
+    variables:
+      - $RELEASE
+  when: on_failure
+
+  image: buildpack-deps:disco-curl
+
+  script:
+    - curl https://raw.githubusercontent.com/getto-systems/psycher-getto/master/bin/notify-deploy.sh | bash -s -- -l $GETTO_PSYCHER_URL?$GETTO_PSYCHER_TOKEN=true failure

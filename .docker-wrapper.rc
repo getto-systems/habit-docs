@@ -1,0 +1,6 @@
+DOCKER_WRAPPER_IMAGE_hugo(){ head -1 $APP_ROOT/.gitlab-ci.yml | cut -d' ' -f2; }
+DOCKER_WRAPPER_IMAGE_node(){ DOCKER_WRAPPER_IMAGE_hugo; }
+DOCKER_WRAPPER_IMAGE_awscli(){ DOCKER_WRAPPER_IMAGE_hugo; }
+
+DOCKER_WRAPPER_SERVER_OPTS_hugo(){ echo "-p ${LABO_PORT_PREFIX}13:1313"; }
+DOCKER_WRAPPER_SERVER_ARGS_hugo(){ echo "--bind 0.0.0.0 --liveReloadPort ${LABO_PORT_PREFIX}13"; }

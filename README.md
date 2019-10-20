@@ -1,3 +1,32 @@
-# docs
+# getto-habit-docs
 
-documents of GETTO Habit
+getto-habit documents
+
+status: draft
+
+
+###### Table of Contents
+
+- [Requirements](#Requirements)
+- [Usage](#Usage)
+- [License](#License)
+
+## Requirements
+
+- hugo
+- Node.js : 12
+
+
+## Usage
+
+```bash
+hugo server
+```
+
+
+## License
+
+getto-habit-docs is licensed under the [MIT](LICENSE) license.
+
+Copyright &copy; since 2019 shun@getto.systems
+
