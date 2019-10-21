@@ -1,13 +1,14 @@
 ---
 title: Auth
 linkTitle: Auth
+draft: true
 date: GETTO_DOCS_CONTENT_DATE
 weight: 1000
 description: >
   ユーザー認証
 ---
 
-## 概要
+## 詳細設計
 
 ![概要](abstract.png)
 

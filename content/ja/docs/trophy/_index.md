@@ -9,121 +9,45 @@ description: >
 
 ## 概要
 
-![概要](abstract.png)
+重要だと判断したアイデアに価値を設定して、目的が達成されたことを検証可能にする。
 
 
-### サービス
+### タスクの表示
 
-#### Task に関するサービス
-
-- Pending : attached を pending にして理由を設定する
-- Block : attached を blocked にして理由を設定する
-- Restart : pending / blocked を attached にする
-- Done : attached を measuring にする
-- Complete : measuring を completed にして価値を設定する
-- Close : attached / pending / blocked / measuring を closed にする
-- ListActive : completed、closed を除く Task を列挙する
-- ListCompleted : completed な Task を列挙する
-- ListClosed : closed な Task を列挙する
-
-
-#### Aquarium に開示するサービス
-
-- Register : Attach した時 Task を登録する
-- Unregister : Undo した時 Task を削除する
-
-
-#### Cockpit に開示するサービス
-
-- ListAttached : attached な Task を列挙する
-- ListMeasuring : measuring な Task を列挙する
-- ListPending : pending な Task を列挙する
-- ListCompleted : completed な Task を列挙する
-
-
-### Task
-
-`entity`
-
-以下の要素の集約ルート。
-
-- Trophy : タスクの価値
-- State : attached / pending / blocked / measuring / completed / closed
-- Log : 変更ログ
-
-以下のリポジトリでデータを取得、変更する。
-
-- Rack : Task を記録する
-
-以下の要素への参照を持つ。
-
-- Idea : Aquarium の Idea データ
-
-
-##### タスクの表示について
-
-- completed、closed のタスクは非表示
+- 状態を選択してタスクを表示する
+- タスクは価値の大きな順番で表示
+  - 未設定のタスクは最優先で表示
 - pending、blocked は理由も表示
-- completed は価値も表示
+- タスクに関連づいているアイデアの詳細も表示する
+  - 内容の変更も可能
 
 
-##### タスクの取り消し操作について
+### 価値の設定
+
+- タスクには価値を設定する
+  - ブロンズ
+  - シルバー
+  - ゴールド
+  - プラチナ
+
+
+### 状態の変更
+
+- タスクの状態は作業の進行具合によって変更する
+  - 着手済 : 初期状態
+  - 保留 : チーム内の理由により停止
+  - 中断 : チーム外の理由により停止
+  - 計測中 : 作業完了、指標の計測中
+  - 完了 : 計測完了、目標は達成
+  - 終了 : 計測完了、目標は未達
+
+
+### 取り消し操作
 
 - 状態の変更の取り消し : 前の状態に変更
 
 
-#### Trophy
+### 変更ログ
 
-`value`
-
-以下の属性を持つ。
-
-- name : 名称
-- number : 順列
-- value : 価値
-
-
-##### 定義する Trophy
-
-- bronze : 1
-- silver : 3
-- gold : 9
-- platinum : 27
-
-
-###### 価値の数値について
-
-- `3^(n - 1)`（n = number）
-- 前の 3倍
-
-
-#### State
-
-`value`
-
-以下の属性を持つ。
-
-- state
-  - attached（着手済）
-  - pending（保留）
-  - blocked（中断）
-  - measuring（測定中）
-  - completed（完了）
-  - closed（終了）
-
-
-#### Log
-
-`entity`
-
-以下の属性を持つ。
-
-- changed_at : 変更日時
-- content : 変更内容
-- reason : 変更理由
-
-
-#### Rack
-
-- Task データのリポジトリ
+- 状態の変更記録
 
