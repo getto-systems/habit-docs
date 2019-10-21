@@ -19,7 +19,7 @@ description: >
 - Block : attached を blocked にして理由を設定
 - Restart : pending / blocked を attached に変更
 - Done : attached を measuring に変更
-- Complete : measuring を completed にして価値を設定
+- Complete : measuring を completed に変更
 - Close : attached / pending / blocked / measuring を closed に変更
 - ListTask : 特定の状態の Task を価値の大きい順に列挙
 
@@ -37,7 +37,7 @@ description: >
 - ListAttached : attached な Task を着手順に列挙する
 - ListMeasuring : measuring な Task を完了順に列挙する
 - ListPending : pending な Task を着手順に列挙する
-- SummaryCompleted : completed・closed な Task を期間ごとに集計する
+- SumUpCompleted : completed な Task を期間ごとに集計する
 
 
 ## モデルオブジェクト
