@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 2.1.0
+
+- update: find-next-version : See merge request getto-systems-base/projects/habit/docs!8
+
+
 ## Version : 2.0.0
 
 - publish with development! : See merge request getto-systems-base/projects/habit/docs!7
