@@ -1,6 +1,7 @@
 ---
 title: Context Map
 linkTitle: Context Map
+draft: true
 date: GETTO_DOCS_CONTENT_DATE
 weight: 2
 description: >

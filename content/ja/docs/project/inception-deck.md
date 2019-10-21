@@ -1,6 +1,7 @@
 ---
 title: Inception Deck
 linkTitle: Inception Deck
+draft: true
 date: GETTO_DOCS_CONTENT_DATE
 weight: 1
 description: >

@@ -9,27 +9,24 @@ description: >
 
 ## 概要
 
-![概要](abstract.png)
+作業中のタスクをカンバン形式で概観して、よりシステムが強化されるタスクを選択できるようにする。
 
 
-### サービス
+### 作業中タスクの表示
 
-#### Trophy のサービス
-
-- ListAttached : attached な Task を列挙する
-- ListMeasuring : measuring な Task を列挙する
-- ListPending : pending な Task を列挙する
-- ListCompleted : completed な Task を列挙する
-
-
-##### ListAttached、ListMeasuring、ListPending の表示について
-
+- 状態ごとにタスクを表示する
+  - 作業中
+  - 計測中
+  - 保留中
 - １件づつ詳細表示
 - 一定数を超えると警告する
+- 着手からの時間が一定期間を超えると警告する
+  - 中断した期間は含まずに計算
+  - 保留した期間は含めて計算
 
 
-##### ListCompleted の表示について
+### 完了タスクの表示について
 
-- 期間に対してトロフィーの価値を集計する
-- １ヶ月、4半期、半年、１年とかの区切り（期間は固定）
+- 期間に対するトロフィーの数を集計する
+- １ヶ月、4半期、半年、１年とかの区切り
 

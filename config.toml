@@ -1,4 +1,4 @@
-baseURL = "https://habit-docs.getto.systems/dev/"
+baseURL = "https://habit-docs-dev.getto.systems/dev/"
 title = "GETTO systems"
 
 enableRobotsTXT = true
@@ -110,10 +110,10 @@ enable = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-  name = "げっとシステムログ"
-  url = "https://www.getto.systems/"
-  icon = "fas fa-pen-fancy"
-  desc = "日常系ほのぼのブログ"
+  name = "げっと Habit ドキュメント"
+  url = "https://habit-docs.getto.systems/"
+  icon = "fas fa-file-alt"
+  desc = "げっと Habit ドキュメント"
 #[[params.links.user]]
 #  name = "User mailing list"
 #  url = "https://example.org/mail"
@@ -130,6 +130,11 @@ enable = false
 #  icon = "fab fa-stack-overflow"
 #  desc = "Practical questions and curated answers"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+[[params.links.developer]]
+  name = "げっと Habit 詳細設計"
+  url = "https://habit-docs-dev.getto.systems/"
+  icon = "fas fa-book"
+  desc = "げっと Habit 詳細設計"
 [[params.links.developer]]
   name = "GitHub"
   url = "https://github.com/getto-systems/habit"
