@@ -2,7 +2,7 @@
 
 getto-habit documents
 
-status: published
+status: published with development
 
 
 ###### Table of Contents
