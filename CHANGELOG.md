@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version : 2.2.2
+
+- fix: gitlab-ci : See merge request getto-systems-base/projects/habit/docs!13
+
+
 ## Version : 2.2.1
 
 - fix: gitlab-ci : See merge request getto-systems-base/projects/habit/docs!11
