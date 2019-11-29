@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version : 2.2.1
+
+- fix: gitlab-ci : See merge request getto-systems-base/projects/habit/docs!11
+- fix: set-window-title : See merge request getto-systems-base/projects/habit/docs!10
+
+
 ## Version : 2.2.0
 
 - add: auth : See merge request getto-systems-base/projects/habit/docs!9
