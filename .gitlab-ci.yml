@@ -175,6 +175,9 @@ release:
       - triggers
       - schedules
 
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+
   before_script:
     - ./bin/restore.sh
   script:
