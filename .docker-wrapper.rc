@@ -1,4 +1,4 @@
-DOCKER_WRAPPER_IMAGE_hugo(){ head -1 $APP_ROOT/.gitlab-ci.yml | cut -d' ' -f2; }
+DOCKER_WRAPPER_IMAGE_hugo(){ cat .getto-hangar-image; }
 DOCKER_WRAPPER_IMAGE_node(){ DOCKER_WRAPPER_IMAGE_hugo; }
 DOCKER_WRAPPER_IMAGE_awscli(){ DOCKER_WRAPPER_IMAGE_hugo; }
 
