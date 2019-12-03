@@ -1,6 +1,6 @@
 {
   "name": "getto-habit-docs",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "GETTO Habit docs contents",
   "scripts": {
     "test": "textlint $(find content -name '*.md')"
